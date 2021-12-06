@@ -8,6 +8,7 @@ public class HeroesapiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HeroesapiApplication.class, args);
-	}
+		System.out.println("Super poderes com WebFlux");
 
+	}
 }

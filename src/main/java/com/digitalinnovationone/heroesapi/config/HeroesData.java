@@ -14,7 +14,7 @@ import static com.digitalinnovationone.heroesapi.constans.HeroesConstant.REGION_
 public class HeroesData {
     public static void main(String[] args) throws Exception{
         AmazonDynamoDB client  = AmazonDynamoDBClientBuilder.standard()
-                .withClientConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
                 .build();
         DynamoDB dynamoDB = new DynamoDB(client);
         Table table = dynamoDB.getTable("Heroes_Table");

@@ -30,7 +30,7 @@ import static com.digitalinnovationone.heroesapi.constans.HeroesConstant.REGION_
 public class HeroesTable {
     public static void main(String[] args) throws Exception {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-                .withClientConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
                 .build();
 
         DynamoDB dynamoDB = new DynamoDB(client);
