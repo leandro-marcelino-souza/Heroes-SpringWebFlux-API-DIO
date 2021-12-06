@@ -20,13 +20,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 import java.sql.Array;
 import java.util.Arrays;
+import static com.digitalinnovationone.heroesapi.constans.HeroesConstant.REGION_DYNAMO;
+import static com.digitalinnovationone.heroesapi.constans.HeroesConstant.ENDPOINT_DYNAMO;
 
 @Configuration
 @EnableDynamoDBRepositories
 public class HeroesTable {
     public static void main(String[] args) throws Exception {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-                .withClientConfiguration(new AwsClientBuilder.EndpointConfiguration())
+                .withClientConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
                 .build();
 
         DynamoDB dynamoDB = new DynamoDB(client);

@@ -22,13 +22,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
+import static com.digitalinnovationone.heroesapi.constans.HeroesConstant.REGION_DYNAMO;
+import static com.digitalinnovationone.heroesapi.constans.HeroesConstant.ENDPOINT_DYNAMO;
 import java.sql.Array;
 import java.util.Arrays;
 
 public class HeroesData {
     public static void main(String[] args) throws Exception{
         AmazonDynamoDB client  = AmazonDynamoDBClientBuilder.standard()
-                .withClientConfiguration(new AwsClientBuilder.EndpointConfiguration())
+                .withClientConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
                 .build();
         DynamoDB dynamoDB = new DynamoDB(client);
         Table table = dynamoDB.getTable("Heroes_Table");
