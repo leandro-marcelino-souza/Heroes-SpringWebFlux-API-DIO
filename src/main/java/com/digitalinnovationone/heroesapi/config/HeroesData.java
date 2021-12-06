@@ -3,6 +3,7 @@ package com.digitalinnovationone.heroesapi.config;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.client.builder.AwsSyncClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
@@ -12,6 +13,9 @@ import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
 import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
+
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,28 +25,20 @@ import org.springframework.util.StringUtils;
 import java.sql.Array;
 import java.util.Arrays;
 
-@Configuration
-@EnableDynamoDBRepositories
-public class HeroesTable {
-    public static void main(String[] args) throws Exception {
-        AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
+public class HeroesData {
+    public static void main(String[] args) throws Exception{
+        AmazonDynamoDB client  = AmazonDynamoDBClientBuilder.standard()
                 .withClientConfiguration(new AwsClientBuilder.EndpointConfiguration())
                 .build();
-
         DynamoDB dynamoDB = new DynamoDB(client);
+        Table table = dynamoDB.getTable("Heroes_Table");
+        Item hero = new Item()
+                .withPrimaryKey("id", 1)
+                .withString("name", "Mulher maravilha")
+                .withString("universe", "dc comics")
+                .withNumber("films", 3);
 
-        String tableName="Heroes_Table";
-
-        try{
-            Table table = dynamoDB.createTable(tableName,
-                    Arrays.asList(new KeySchemaElement("id", KeyType.HASH)),
-                    Arrays.asList(new AttributeDefinition("id" , ScalarAttributeType.S)),
-                    new ProvisionedThroughput(5L, 5l));
-            table.waitForActive();
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        PutItemOutcome outcome =table.putItem(hero);
 
     }
 
