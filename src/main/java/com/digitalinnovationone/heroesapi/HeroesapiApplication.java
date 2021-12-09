@@ -2,7 +2,10 @@ package com.digitalinnovationone.heroesapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 
+
+@EnableDynamoDBRepositories
 @SpringBootApplication
 public class HeroesapiApplication {
 

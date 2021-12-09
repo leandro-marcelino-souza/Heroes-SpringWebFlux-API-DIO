@@ -10,20 +10,20 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@DynamoDBTable(tableName = "Heroes_Table")
+@DynamoDBTable (tableName = "Heroes_Table_Dio1")
 public class Heroes {
 
     @Id
-    @DynamoDBHashKey(attributeName = "id")
+    @DynamoDBHashKey (attributeName = "id")
     private String id;
 
-    @DynamoDBAttribute(attributeName = "name")
+    @DynamoDBAttribute (attributeName = "name")
     private String name;
 
     @DynamoDBAttribute(attributeName = "universe")
     private String universe;
 
-    @DynamoDBAttribute(attributeName = "films")
+    @DynamoDBAttribute (attributeName = "films")
     private int films;
 
 
