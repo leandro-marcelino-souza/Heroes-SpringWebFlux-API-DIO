@@ -4,11 +4,15 @@ import com.digitalinnovationone.heroesapi.document.Heroes;
 import com.digitalinnovationone.heroesapi.repository.HeroesRepository;
 import com.digitalinnovationone.heroesapi.service.HeroesService;
 import lombok.extern.slf4j.Slf4j;
+import org.reactivestreams.Publisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
+
 import static com.digitalinnovationone.heroesapi.constans.HeroesConstant.HEROES_ENDPOINT_LOCAL;
 
 @RestController
@@ -44,12 +48,12 @@ public class HeroesController {
 
     }
     @PostMapping(HEROES_ENDPOINT_LOCAL)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(code = HttpStatus.CREATED)
     public Mono<Heroes> createHero(@RequestBody Heroes heroes) {
         log.info("A new Hero was Created");
         return heroesService.save(heroes);
-
     }
+
 
     @DeleteMapping(HEROES_ENDPOINT_LOCAL + "/{id}")
     @ResponseStatus(code = HttpStatus.NOT_FOUND)

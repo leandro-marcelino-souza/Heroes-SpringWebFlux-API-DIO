@@ -3,6 +3,7 @@ package com.digitalinnovationone.heroesapi.document;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import org.reactivestreams.Publisher;
 import org.springframework.data.annotation.Id;
 
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @DynamoDBTable (tableName = "Heroes_Table_Dio1")
-public class Heroes {
+public class Heroes{
 
     @Id
     @DynamoDBHashKey (attributeName = "id")
