@@ -1,5 +1,5 @@
 # Heroes-SpringWebFlux-API-DIO
-Criando um gerenciador de heroies 
+Criando um gerenciador de heroes 
 
 Stack utilizada
    
